@@ -21,7 +21,7 @@ function onLinkClick(evt) {
     console.log(currentItem);
 
     const lightbox = new SimpleLightbox('.gallery a', { 
-        captionsData: 'alt';
+        captionsData: 'alt',
         captionDelay: 250,
     });
 
