@@ -19,14 +19,11 @@ function onLinkClick(evt) {
    
     const currentItem = galleryItems.find(({ preview }) => preview === cardSrc)
     console.log(currentItem);
-    
-    let lightbox = new SimpleLightbox(
-        `<div class="gallery">
-         <a href="${cardSrc}" >
-    <img src="${cardSrc}" alt="${evt.target.getAttribute('alt')}"/>
-    </a>
-       </div>` );
-    lightbox.on('show.simpleLightbox', function(){})
+
+    const lightbox = new SimpleLightbox('.gallery a', { 
+        captionsData: 'alt';
+        captionDelay: 250,
+    });
 
  }
 
