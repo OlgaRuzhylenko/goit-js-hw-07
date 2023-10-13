@@ -10,23 +10,20 @@ const marcup = galleryItems.map(({ preview, original, description }) =>
     </li>`).join('')
 container.insertAdjacentHTML('beforeend', marcup);
 
- container.addEventListener('click', onLinkClick)
+container.addEventListener('click', onLinkClick)
 
 function onLinkClick(evt) {
     evt.preventDefault();
 
     const cardId = evt.target.dataset.source;
-
     const currentItem = galleryItems.find(({ original }) => original === cardId)
-
+    
     const instance = basicLightbox.create(
         ` <div>
    <img src="${currentItem.original}" alt="${currentItem.description}">
     </div>
     `, 
-        {
-		closable: false
-	}
+        { closable: false }
     );
     document.addEventListener('keydown', closeModalWindowByEsc);
     function closeModalWindowByEsc(evt) {
