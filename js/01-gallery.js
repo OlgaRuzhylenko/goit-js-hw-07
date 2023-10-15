@@ -32,6 +32,9 @@ function onLinkClick(evt) {
     },
 }
 );
+container.addEventListener('click', () => {
+    instance.close();
+})
    
     function closeModalWindowByEsc(evt) {
         if (evt.key === 'Escape') {
