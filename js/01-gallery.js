@@ -22,16 +22,16 @@ function onLinkClick(evt) {
         ` <div>
    <img src="${currentItem.original}" alt="${currentItem.description}">
     </div>
-    `);
-
-    instance.onShow(() => {
+    `,
+{
+    onShow: () => {
          document.addEventListener('keydown', closeModalWindowByEsc);
-    });
-
-    instance.onClose(() => {
+    },
+    onClose: () => {
           document.removeEventListener('keydown', closeModalWindowByEsc);
-    });
-   
+    },
+}
+);
    
     function closeModalWindowByEsc(evt) {
         if (evt.key === 'Escape') {
