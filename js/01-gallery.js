@@ -1,48 +1,59 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-const container = document.querySelector('.gallery');
-const marcup = galleryItems.map(({ preview, original, description }) =>
-    `<li class="gallery__item"> 
+const container = document.querySelector(".gallery");
+const marcup = galleryItems
+  .map(
+    ({ preview, original, description }) =>
+      `<li class="gallery__item"> 
     <a href="${original}" class="gallery__link">
     <img src="${preview}" alt="${description}" data-source="${original}"/>
     </a>
-    </li>`).join('')
-container.insertAdjacentHTML('beforeend', marcup);
+    </li>`
+  )
+  .join("");
+container.insertAdjacentHTML("beforeend", marcup);
 
-container.addEventListener('click', onLinkClick)
+container.addEventListener("click", onLinkClick);
+
+let instance;
 
 function onLinkClick(evt) {
-    evt.preventDefault();
+  evt.preventDefault();
 
-    const cardId = evt.target.dataset.source;
-    const currentItem = galleryItems.find(({ original }) => original === cardId)
-    
-    const instance = basicLightbox.create(
-        ` <div>
+  const cardId = evt.target.dataset.source;
+  const currentItem = galleryItems.find(({ original }) => original === cardId);
+
+  instance = basicLightbox.create(
+    ` <div>
    <img src="${currentItem.original}" alt="${currentItem.description}">
     </div>
-    `,
-{
-    onShow: () => {
-         document.addEventListener('keydown', closeModalWindowByEsc);
-    },
-    onClose: () => {
-          document.removeEventListener('keydown', closeModalWindowByEsc);
-    },
+    `
+    // {
+    //     onShow: () => {
+    //
+    //     },
+    //     onClose: () => {
+    //
+    //     },
+    // }
+  );
+  //   container.addEventListener("click", () => {
+  //     instance.close();
+  //   });
+  instance.show();
+
+  console.log(instance.visible());
+  if (instance.visible()) {
+    document.addEventListener("keydown", closeModalWindowByEsc);
+  }
 }
-);
-container.addEventListener('click', () => {
+
+function closeModalWindowByEsc(evt) {
+  if (evt.key === "Escape") {
     instance.close();
-})
-   
-    function closeModalWindowByEsc(evt) {
-        if (evt.key === 'Escape') {
-            instance.close()
-        }
-    }
-    instance.show();
+
+    document.removeEventListener("keydown", closeModalWindowByEsc);
+  }
 }
-
 // console.log(galleryItems)
-
