@@ -29,18 +29,8 @@ function onLinkClick(evt) {
    <img src="${currentItem.original}" alt="${currentItem.description}">
     </div>
     `
-    // {
-    //     onShow: () => {
-    //
-    //     },
-    //     onClose: () => {
-    //
-    //     },
-    // }
-  );
-  //   container.addEventListener("click", () => {
-  //     instance.close();
-  //   });
+    );
+
   instance.show();
 
   console.log(instance.visible());
